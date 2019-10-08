@@ -1,5 +1,8 @@
 body {
-    background-color: black;
+    background: rgb(36,0,0);
+    background: radial-gradient(circle, rgba(36,0,0,1) 0%, rgba(64,37,3,1) 11%, rgba(105,121,9,1) 23%, rgba(14,130,8,1) 38%, rgba(84,181,138,1) 49%, rgba(12,106,142,1) 59%, rgba(125,124,187,1) 69%, rgba(198,68,207,1) 78%, rgba(255,0,26,1) 90%);
+    background-repeat: no-repeat;
+    background-size: 100% 100vh;
 }
 
 .parent {
@@ -10,7 +13,8 @@ body {
 }
 
 .child {
-    background-color: bisque;
+    background: rgb(18,32,32);
+background: radial-gradient(circle, rgba(18,32,32,1) 3%, rgba(4,78,77,1) 8%, rgba(6,106,104,1) 16%, rgba(7,135,133,1) 24%, rgba(9,172,170,1) 34%, rgba(7,199,197,1) 47%, rgba(9,227,225,1) 53%, rgba(11,250,248,1) 62%, rgba(36,0,0,1) 84%);
     width: 500px;
     height: 200px;
     margin-left: auto;
