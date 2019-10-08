@@ -1,0 +1,18 @@
+body {
+    background-color: black;
+}
+
+.parent {
+    width: 100%;
+    height: 500px;
+    display:  flex;
+    align-items: center;
+}
+
+.child {
+    background-color: bisque;
+    width: 500px;
+    height: 200px;
+    margin-left: auto;
+    margin-right: auto;
+}
