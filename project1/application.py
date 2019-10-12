@@ -3,7 +3,7 @@ import os
 # res = requests.get("https://www.goodreads.com/book/review_counts.json", params={"key": "WSPQYHxOwJq5n8j4TsQQA", "isbns": "9781632168146"})
 # print(res.json())
 
-from flask import Flask, render_template, session
+from flask import Flask, render_template, session, request
 from flask_session import Session
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
@@ -24,14 +24,20 @@ engine = create_engine(os.getenv("DATABASE_URL"))
 db = scoped_session(sessionmaker(bind=engine))
 
 
-@app.route("/")
+@app.route("/", methods=["GET", "POST"])
 def Login():
-    return render_template("login.html")
+    if request.method == "GET":
+        return render_template("login.html")
+    else:
+        return render_template("search.html")
 
-@app.route("/register")
+@app.route("/register", methods=["GET", "POST"])
 def Register():
-    return render_template("register.html")
+    if request.method == "GET":
+        return render_template("register.html")
+    else:
+        return render_template("login.html")
 
 @app.route("/search")
 def Search():
-    return render_template("Search.html")
+    return render_template("search.html")

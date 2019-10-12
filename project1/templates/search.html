@@ -1,15 +1,17 @@
 <!DOCTYPE html>
     <html>
         <head>
-            <title>Login</title>
+            <title>Search</title>
             <link rel="stylesheet" type="text/css" href="../static/style.css">
         </head>
         <body>
             <div class="parent">
-                <div class="child">
-                    <input id="passwordField" type="text" name="username" placeholder="">
-                    <button id="submitBut" type="button" name="submitBut">Search</button>
-                </div>
+                <form action="/search" method="POST">
+                    <div class="child">
+                        <input id="passwordField" type="text" name="Search" placeholder="">
+                        <button id="submitBut" type="submit" name="submitBut">Search</button>
+                    </div>
+                </form>
             </div>
         </body>
     </html>

@@ -1,16 +1,18 @@
 <!DOCTYPE html>
     <html>
         <head>
-            <title>Login</title>
+            <title>Register</title>
             <link rel="stylesheet" type="text/css" href="../static/style.css">
         </head>
         <body>
             <div class="parent">
-                <div class="child">
-                    <input id="usernameField" type="text" name="username" placeholder="Username">
-                    <input id="passwordField" type="password" name="password" placeholder="Password">
-                    <button id="submitBut" type="button" name="submitBut">Register</button>
-                </div>
+                    <form action="/register" method="POST">
+                        <div class="child">
+                            <input id="usernameField" type="text" name="username" placeholder="Username">
+                            <input id="passwordField" type="password" name="password" placeholder="Password">
+                            <button id="submitBut" type="submit" name="registerBut">Register</button>
+                        </div>
+                    </form>
             </div>
         </body>
     </html>
