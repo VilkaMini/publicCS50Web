@@ -38,6 +38,9 @@ def Register():
     else:
         return render_template("login.html")
 
-@app.route("/search")
+@app.route("/search", methods=["GET", "POST"])
 def Search():
-    return render_template("search.html")
+    if request.method == "GET":
+        return render_template("search.html")
+    else:
+        return render_template("bookpage.html")
