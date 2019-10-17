@@ -36,6 +36,7 @@ def Register():
     if request.method == "GET":
         return render_template("register.html")
     else:
+        engine.execute("INSERT INTO users (username, password) VALUES (:username, :password)", username=request.form.get("username"), password=request.form.get("password"))
         return render_template("login.html")
 
 @app.route("/search", methods=["GET", "POST"])
