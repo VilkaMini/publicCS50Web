@@ -1,7 +1,7 @@
 import os
-# import requests
-# res = requests.get("https://www.goodreads.com/book/review_counts.json", params={"key": "WSPQYHxOwJq5n8j4TsQQA", "isbns": "9781632168146"})
-# print(res.json())
+import requests
+res = requests.get("https://www.goodreads.com/book/review_counts.json", params={"key": "WSPQYHxOwJq5n8j4TsQQA", "isbns": "9781632168146"})
+print(res.json())
 
 from flask import Flask, render_template, session, request
 from flask_session import Session
@@ -36,7 +36,7 @@ def Register():
     if request.method == "GET":
         return render_template("register.html")
     else:
-        engine.execute("INSERT INTO users (username, password) VALUES (:username, :password)", username=request.form.get("username"), password=request.form.get("password"))
+        engine.execute('INSERT INTO users (username, password) VALUES (:username, :password)', username=request.form.get("username"), password=request.form.get("password"))
         return render_template("login.html")
 
 @app.route("/search", methods=["GET", "POST"])
