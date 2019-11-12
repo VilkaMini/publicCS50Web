@@ -36,8 +36,15 @@ def Register():
     if request.method == "GET":
         return render_template("register.html")
     else:
-        engine.execute('INSERT INTO users (username, password) VALUES (:username, :password)', username=request.form.get("username"), password=request.form.get("password"))
-        return render_template("login.html")
+        username=request.form.get("username")
+        password=request.form.get("password")
+        user = engine.execute(f"SELECT username FROM users WHERE username='{username}'")
+        # return render_template("check.html", checkuser=user)
+        if user == "<sqlalchemy.engine.result.ResultProxy object":
+            engine.execute(f"INSERT INTO users (username, password) VALUES('{username}', '{password}')")
+            return render_template("login.html")
+        else:
+            return render_template("register.html")
 
 @app.route("/search", methods=["GET", "POST"])
 def Search():
