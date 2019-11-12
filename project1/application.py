@@ -39,8 +39,7 @@ def Register():
         username=request.form.get("username")
         password=request.form.get("password")
         user = engine.execute(f"SELECT username FROM users WHERE username='{username}'")
-        # return render_template("check.html", checkuser=user)
-        if user == "<sqlalchemy.engine.result.ResultProxy object":
+        if not user:
             engine.execute(f"INSERT INTO users (username, password) VALUES('{username}', '{password}')")
             return render_template("login.html")
         else:
