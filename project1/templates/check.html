@@ -5,6 +5,10 @@
             <link rel="stylesheet" type="text/css" href="../static/style.css">
         </head>
         <body>
-          {{checkuser}}
+            <div class="parent">
+                {% for book in sbooks %}
+                <div class="">{{ book }}</div>
+                {% endfor %}
+            </div>
         </body>
     </html>
