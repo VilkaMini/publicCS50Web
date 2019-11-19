@@ -157,3 +157,8 @@ body {
     opacity: 0.5;
     margin-left: 100px;
 }
+
+.result {
+    display: none;
+    margin-top: 50px;
+}

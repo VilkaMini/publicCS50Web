@@ -84,3 +84,13 @@ def Search():
         books = engine.execute(f"SELECT * FROM books WHERE isbn LIKE '%%{book}%%' OR title LIKE '%%{book}%%' OR author LIKE '%%{book}%%'")
         result = books.fetchall()
         return render_template("books.html", sbooks=result)
+
+@app.route("/book", methods=["GET", "POST"])
+@login_required
+def Book():
+    if request.method == "GET":
+        return render_template("search.html")
+    else:
+        info = request.form.get("result")
+        print("Forma", info)
+        return render_template("bookpage.html", bookinfo=info)
