@@ -71,7 +71,8 @@ def Register():
 
 @app.route("/logout", methods=["GET", "POST"])
 def Logout():
-    session.clear
+    session.clear()
+    return render_template("login.html")
 
 @app.route("/search", methods=["GET", "POST"])
 @login_required
@@ -82,5 +83,4 @@ def Search():
         book=request.form.get("search")
         books = engine.execute(f"SELECT * FROM books WHERE isbn LIKE '%%{book}%%' OR title LIKE '%%{book}%%' OR author LIKE '%%{book}%%'")
         result = books.fetchall()
-        return render_template("check.html", sbooks=result)
-        # return render_template("bookpage.html")
+        return render_template("books.html", sbooks=result)

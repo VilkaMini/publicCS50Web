@@ -1,7 +1,7 @@
 body {
     background: rgb(131,58,180);
     background: linear-gradient(90deg, rgba(131,58,180,1) 0%, rgba(253,29,29,1) 50%, rgba(252,176,69,1) 100%);
-    background-repeat: no-repeat;
+    background-repeat: repeat-y;
     background-size: 100% 100vh;
 }
 
@@ -18,6 +18,13 @@ body {
     width: 250px;
     height: 400px;
     margin-top: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: auto;
+}
+.bookBoxB {
+    width: 250px;
+    height: 400px;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: auto;
@@ -99,15 +106,14 @@ body {
     outline: none;
     border-radius: 50px;
     height: 10%;
-    width: 100%;
+    width: 120%;
     text-align: center;
     margin-top: 10%;
 }
 
 .text {
     position: absolute;
-    left: 35%;
-    top: -7%;
+    left: 5%;
 }
 
 .reviews {
@@ -123,4 +129,31 @@ body {
     text-align: center;
     margin-top: 80%;
     left: -25%;
+}
+
+#registerButS {
+    font-family: "Georgia", serif;
+    font-size: 14px;
+    color: grey;
+    border: none;
+    outline: none;
+    border-radius: 50px;
+    width: 100px;
+    height: 38px;
+    opacity: 0.5;
+    margin-left: 40px;
+    margin-top: -70px;
+}
+
+#registerButr {
+    font-family: "Georgia", serif;
+    font-size: 14px;
+    color: grey;
+    border: none;
+    outline: none;
+    border-radius: 50px;
+    width: 100px;
+    height: 38px;
+    opacity: 0.5;
+    margin-left: 100px;
 }

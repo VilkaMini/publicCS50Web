@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+    <html>
+        <head>
+            <title>Books</title>
+            <link rel="stylesheet" type="text/css" href="../static/style.css">
+        </head>
+        <body>
+            <div class="parent">
+                <div class="bookBoxB">
+                    {% for book in sbooks %}
+                    <div class="textBox"><p class="text">{{book[1]}} by {{book[2]}}</p></div>
+                    {% endfor %}
+                </div>
+            </div>
+        </body>
+    </html>
