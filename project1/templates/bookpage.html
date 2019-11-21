@@ -7,11 +7,23 @@
         <body>
             <div class="parent">
                 <div class="bookBox">
-                    <div class="textBox"><p class="text">{{bookinfo[1]}}</p></div>
-                    <div class="textBox"><p class="text">{{bookinfo[2]}}</p></div>
-                    <div class="textBox"><p class="text">{{bookinfo[3]}}</p></div>
-                    <div class="textBox"><p class="text">{{bookinfo[0]}}</p></div>
-                    <div class="reviews"></div>
+                    <div class=""><p class="text">ISBN: {{bookinfo[0][0]}}</p></div>
+                    <div class=""><p class="text">{{bookinfo[0][1]}}</p></div>
+                    <div class=""><p class="text">{{bookinfo[0][2]}}</p></div>
+                    <div class=""><p class="text">{{bookinfo[0][3]}}</p></div>
+                    <div class="reviews">
+                        {% if userid == False %}
+                            <form action="/review" method="post">
+                                <input type="text" name="isbn" id="isbnBox" value="{{bookinfo[0][0]}}">
+                                <input type="text" name="review" id=reviewBox required>
+                                <input type="number" min="1" max="5" step="1" name="rating" id=rating required>
+                                <button type="submit" name="submit" id="submitReview">:)</button>
+                            </form>
+                        {% endif %}
+                        {% for review in reviews %}
+                            <div class="reviewDiv">{{review[2]}}<br>RATED: {{review[3]}} STARS</div>
+                        {% endfor %}
+                    </div>
                 </div>
             </div>
         </body>

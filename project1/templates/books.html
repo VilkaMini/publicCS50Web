@@ -7,10 +7,10 @@
         <body>
             <div class="parent">
                 <div class="bookBoxB">
-                    <form action="/book" name="formos" id="forma" method="post">
+                    <form action="/book" id="forma" method="post">
                         {% for book in sbooks %}
                         <input type="text" name="result" id="result" class="result">
-                        <div onClick="submitForm('{{book[0]}}');" class="textBox"><p class="text">{{book[1]}} by {{book[2]}}</p></div>
+                        <div onClick="submitForm('{{book[0]}}');"><p class="text">{{book[1]}} by {{book[2]}}</p></div>
                         {% endfor %}
                     </form>
                 </div>

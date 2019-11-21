@@ -28,6 +28,7 @@ body {
     margin-left: auto;
     margin-right: auto;
     margin-bottom: auto;
+    margin-top: 2vh;
 }
 .child {
     width: 500px;
@@ -114,9 +115,6 @@ body {
 .text {
     position: absolute;
     left: 5%;
-}
-
-.reviews {
     position: relative;
     background-color: white;
     font-family: "Georgia", serif;
@@ -124,11 +122,22 @@ body {
     border: none;
     outline: none;
     border-radius: 50px;
-    height: 40%;
-    width: 150%;
+    width: 110%;
     text-align: center;
-    margin-top: 80%;
-    left: -25%;
+    line-height: 24px;
+}
+
+.reviews {
+    position: relative;
+    background-color: white;
+    font-size: 15px;
+    border: none;
+    outline: none;
+    border-radius: 50px;
+    height: 40%;
+    width: 120%;
+    text-align: center;
+    margin-top: 50%;
 }
 
 #registerButS {
@@ -161,4 +170,8 @@ body {
 .result {
     display: none;
     margin-top: 50px;
+}
+
+#isbnBox {
+    display: none;
 }

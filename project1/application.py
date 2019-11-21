@@ -91,6 +91,26 @@ def Book():
     if request.method == "GET":
         return render_template("search.html")
     else:
+        usercheck = False
         info = request.form.get("result")
-        print("Forma", info)
-        return render_template("bookpage.html", bookinfo=info)
+        result = engine.execute(f"SELECT * FROM books WHERE isbn ='{info}'")
+        review = engine.execute(f"SELECT * FROM reviews WHERE isbn ='{info}'")
+        review = review.fetchall()
+        result = result.fetchall()
+        if review != []:
+            if session["user_id"] == int(review[0][4]):
+                usercheck = True
+        return render_template("bookpage.html", bookinfo=result, reviews=review, userid=usercheck)
+
+@app.route("/review", methods=["GET", "POST"])
+@login_required
+def Review():
+    if request.method == "GET":
+        return render_template("search.html")
+    else:
+        userid = session["user_id"]
+        isbn = request.form.get("isbn")
+        review = request.form.get("review")
+        rating = request.form.get("rating")
+        engine.execute(f"INSERT INTO reviews (isbn, review, rating, userid) VALUES ('{isbn}', '{review}', '{rating}', '{userid}')")
+        return render_template("search.html")
