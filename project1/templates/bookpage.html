@@ -11,7 +11,7 @@
                     <div class=""><p class="text">{{bookinfo[0][1]}}</p></div>
                     <div class=""><p class="text">{{bookinfo[0][2]}}</p></div>
                     <div class=""><p class="text">{{bookinfo[0][3]}}</p></div>
-                    <div class="reviews">
+                    <div class="reviews" id="scrollingBox">
                         {% if userid == False %}
                             <form action="/review" method="post">
                                 <input type="text" name="isbn" id="isbnBox" value="{{bookinfo[0][0]}}">

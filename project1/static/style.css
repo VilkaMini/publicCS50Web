@@ -138,6 +138,7 @@ body {
     width: 120%;
     text-align: center;
     margin-top: 50%;
+    overflow-y: auto;
 }
 
 #registerButS {
@@ -173,5 +174,17 @@ body {
 }
 
 #isbnBox {
+    display: none;
+}
+
+#reviewBox {
+    margin-top: 5%;
+}
+
+#submitReview {
+    border-radius: 20%;
+}
+
+::-webkit-scrollbar {
     display: none;
 }

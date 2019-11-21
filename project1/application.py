@@ -98,8 +98,13 @@ def Book():
         review = review.fetchall()
         result = result.fetchall()
         if review != []:
-            if session["user_id"] == int(review[0][4]):
-                usercheck = True
+            print(review)
+            a=0
+            for dic in review:
+                print(dic)
+                if session["user_id"] == int(dic[4]):
+                    usercheck = True
+                a +=1
         return render_template("bookpage.html", bookinfo=result, reviews=review, userid=usercheck)
 
 @app.route("/review", methods=["GET", "POST"])
