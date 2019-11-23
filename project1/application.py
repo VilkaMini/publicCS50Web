@@ -2,6 +2,7 @@ import csv
 import urllib.request
 import os
 import requests
+import json
 res = requests.get("https://www.goodreads.com/book/review_counts.json", params={"key": "WSPQYHxOwJq5n8j4TsQQA", "isbns": "9781632168146"})
 print(res.json())
 
@@ -121,3 +122,18 @@ def Review():
         rating = request.form.get("rating")
         engine.execute(f"INSERT INTO reviews (isbn, review, rating, userid) VALUES ('{isbn}', '{review}', '{rating}', '{userid}')")
         return render_template("search.html")
+
+@app.route("/api/<isbn>", methods=["GET"])
+def Api(isbn):
+    goodreads = requests.get("https://www.goodreads.com/book/review_counts.json", params={"key": "WSPQYHxOwJq5n8j4TsQQA", "isbns": f"{isbn}"})
+    bookInfo = engine.execute(f"SELECT * FROM books WHERE isbn ='{isbn}'")
+    bookInfo = bookInfo.fetchall()
+    goodreads = goodreads.json()
+    print(goodreads)
+    jDic = {"title": bookInfo[0][1],
+            "author": bookInfo[0][2],
+            "year": bookInfo[0][3],
+            "isbn": bookInfo[0][0],
+            "review_court": goodreads["books"][0]["ratings_count"],
+            "average_score": goodreads["books"][0]["average_rating"]}
+    return json.dumps(jDic)
