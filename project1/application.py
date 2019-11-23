@@ -93,19 +93,21 @@ def Book():
     else:
         usercheck = False
         info = request.form.get("result")
+        goodreads = requests.get("https://www.goodreads.com/book/review_counts.json", params={"key": "WSPQYHxOwJq5n8j4TsQQA", "isbns": f"{info}"})
         result = engine.execute(f"SELECT * FROM books WHERE isbn ='{info}'")
         review = engine.execute(f"SELECT * FROM reviews WHERE isbn ='{info}'")
+        goodjson = goodreads.json()
+        ratingcount = goodjson["books"][0]["ratings_count"]
+        average = goodjson["books"][0]["average_rating"]
         review = review.fetchall()
         result = result.fetchall()
         if review != []:
-            print(review)
             a=0
             for dic in review:
-                print(dic)
                 if session["user_id"] == int(dic[4]):
                     usercheck = True
                 a +=1
-        return render_template("bookpage.html", bookinfo=result, reviews=review, userid=usercheck)
+        return render_template("bookpage.html", bookinfo=result, reviews=review, userid=usercheck, average=average, count=ratingcount)
 
 @app.route("/review", methods=["GET", "POST"])
 @login_required

@@ -11,6 +11,8 @@
                     <div class=""><p class="text">{{bookinfo[0][1]}}</p></div>
                     <div class=""><p class="text">{{bookinfo[0][2]}}</p></div>
                     <div class=""><p class="text">{{bookinfo[0][3]}}</p></div>
+                    <div class=""><p class="text">Average rating on GR: {{average}} </p></div>
+                    <div class=""><p class="text">Rating count on GR: {{count}}</p></div>
                     <div class="reviews" id="scrollingBox">
                         {% if userid == False %}
                             <form action="/review" method="post">
