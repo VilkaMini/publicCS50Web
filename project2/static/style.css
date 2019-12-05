@@ -1,0 +1,31 @@
+body {
+    background-image: url(https://o.aolcdn.com/images/dims?quality=85&image_uri=https%3A%2F%2Fo.aolcdn.com%2Fimages%2Fdims%3Fcrop%3D904%252C507%252C0%252C0%26quality%3D85%26format%3Djpg%26resize%3D1600%252C897%26image_uri%3Dhttps%253A%252F%252Fs.yimg.com%252Fos%252Fcreatr-uploaded-images%252F2019-09%252Fa252c700-d091-11e9-98d7-456d0782809a%26client%3Da1acac3e1b3290917d92%26signature%3Dbfd0e993df5297c08f967061614c8160d0d9ccd8&client=amp-blogside-v2&signature=5cf955b9a3304615eae2ed4df51146dca86f2421);
+    background-size: 100vw 100vh;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#input {
+    font-size: larger;
+    text-align: center;
+    color: blueviolet;
+    resize: none;
+    vertical-align: middle;
+    background-image: url(https://www.extremetech.com/wp-content/uploads/2019/11/Cybertruck-4-640x354.jpg);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    width: 10%;
+    height: 25px;
+    outline: none;
+}
+
+#message {
+    background-image: url(https://cdn.bitdegree.org/learn/pexels-photo-920220.jpeg?4d5e638c);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    resize: none;
+    width: 10%;
+    height: 50px;
+}
