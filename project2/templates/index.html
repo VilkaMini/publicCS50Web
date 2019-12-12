@@ -6,10 +6,11 @@
     </head>
     <body>
         <div id="parent">
-            <textarea name="name" id="input"></textarea>
-            <button onclick="userpass()" id="button1"></button>
-            <textarea name="message" id="message"></textarea>
+            <textarea placeholder="Username" name="name" id="input"></textarea>
+            <button onclick="messageSend()" id="button1">Send</button>
+            <textarea placeholder="Message" name="message" id="message"></textarea>
         </div>
+        <div id="messageBoard"></div>
     </body>
     <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
     <script type="text/javascript" charset="utf-8">
@@ -19,10 +20,31 @@
             socket.emit('con', {data: 'I\'m connected!'});
         });
         //////////////////
-        function userpass() {
+        function messageSend() {
             var userName = document.getElementById("input").value;
-            socket.emit('username', {data: userName})
-            console.log(userName)
+            var messageS = document.getElementById("message").value;
+            var timeS = new Date().toLocaleTimeString();
+            socket.emit('message', {message: messageS, username: userName, time: timeS})
         }
+        ///////////////////
+        var msgA = [];
+        socket.on('chat message', function(msg){
+            msgA.push(msg)
+            var divA = []
+            msgA.forEach(message => {
+                const messageS = document.createElement('div')
+                messageS.className = 'messages'
+                messageS.innerHTML = message
+                divA.push(messageS)});
+            if (msgA.length > 10)
+            {
+                msgA.shift();
+            }
+            document.getElementById("messageBoard").innerHTML = "";
+            divA.forEach( div => {
+                document.querySelector('#messageBoard').append(div) 
+            })
+        })
+        //////////////////
     </script>
 </html>

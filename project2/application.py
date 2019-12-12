@@ -1,7 +1,7 @@
 import os
 
 from flask import Flask, render_template
-from flask_socketio import SocketIO, emit, join_room, leave_room
+from flask_socketio import SocketIO, send, emit, join_room, leave_room
 
 app = Flask(__name__)
 app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
@@ -16,9 +16,11 @@ def index():
 def handle_con(con):
     print(con['data'])
 
-@socketio.on('username')
-def handle_message(username):
-    print('username : ' + username['data'])
+@socketio.on('message')
+def handle_message(msg):
+    
+    message = msg["time"] + " " + msg["username"] + ": " + msg["message"]
+    emit('chat message', message)
 
 @socketio.on('join')
 def on_join(data):
@@ -33,6 +35,15 @@ def on_leave(data):
     room = data['room']
     leave_room(room)
     emit(username + ' has left the room.', room=room)
+
+
+
+
+
+
+
+
+
 
 if __name__ == "__main__":
     socketio.run(app)

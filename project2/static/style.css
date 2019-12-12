@@ -37,7 +37,36 @@ body {
     height: 20px;
     border-radius: 5px;
     border-color: black;
-    outline-width: 10px;
-    outline-offset: -3px;
-    outline-color: black;
+    outline: none;
+}
+
+#button1:hover{
+    background-color: black;
+    color: white;
+    transition: 0.5s;
+}
+
+#button1:active{
+    background-color: red;
+    color: black;
+    transition: 0.05s;
+}
+
+#messageBoard {
+    width: 50%;
+    background-color: rgba(105, 213, 246, 0.2);
+    border-radius: 20px;
+    border-color: black;
+    height: fit-content;
+    overflow: scroll;
+    margin-right: auto;
+    margin-left: auto;
+    height: 50vh;
+}
+
+.messages {
+    width: 100%;
+    color: black;
+    margin-left: 10px;
+    margin-top: 5px;
 }
