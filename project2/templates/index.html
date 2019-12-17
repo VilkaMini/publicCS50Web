@@ -11,6 +11,11 @@
             <textarea placeholder="Message" name="message" id="message"></textarea>
         </div>
         <div id="messageBoard"></div>
+        <div id="channelHolder">
+                <textarea placeholder="Create channel" name="channel" id="channel"></textarea>
+                <button onclick="channel()" id="button2">Create</button>
+                <div id="channels"></div>
+        </div>
     </body>
     <script src="//cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js" integrity="sha256-yr4fRk/GU1ehYJPAs8P4JlTgu0Hdsp4ZKrx8bDEDC3I=" crossorigin="anonymous"></script>
     <script type="text/javascript" charset="utf-8">
@@ -45,6 +50,31 @@
                 document.querySelector('#messageBoard').append(div) 
             })
         })
-        //////////////////
+        ////////////////////
+        var channels = []
+        function channel() {
+            let channelName = document.getElementById('channel').value;
+            channels.forEach(numberC => {
+                console.log("Number c: ", numberC.innerText, "Text: ", channelName, "Ar lygu: ", numberC.innerText == channelName) ;
+                if (numberC.innerText == channelName) {
+                    console.warn("Veikia ifas");
+                    return null;
+                } 
+            });
+            const channel = document.createElement('button')
+            channel.className = 'channelDiv'
+            channel.innerHTML = channelName
+            channel.onclick = function() { room(channelName) }
+            channels.push(channel)
+            document.getElementById("channels").innerHTML = "";
+            channels.forEach( div => {
+                document.querySelector('#channels').append(div) 
+            })
+        }
+        /////////////////////
+        function room(channelName) {
+            let userName = document.getElementById('input').value
+            socket.emit('join', {username: userName, room: channelName})
+        }
     </script>
 </html>
