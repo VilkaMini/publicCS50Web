@@ -7,8 +7,9 @@
     <body>
         <div id="parent">
             <textarea placeholder="Username" name="name" id="input"></textarea>
-            <button onclick="messageSend()" id="button1">Send</button>
+            <button onclick="usernameRegister()" id="button1">Login</button>
             <textarea placeholder="Message" name="message" id="message"></textarea>
+            <button onclick="messageSend()" id="button3">Send</button>
         </div>
         <div id="messageBoard"></div>
         <div id="channelHolder">
@@ -24,6 +25,17 @@
         socket.on('connect', function() {
             socket.emit('con', {data: 'I\'m connected!'});
         });
+        //////////////////
+        function usernameRegister() {
+            var userName = document.getElementById("input").value
+            const name = document.createElement('div')
+            name.className = 'usernameDiv'
+            name.innerHTML = userName
+            document.querySelector('#input').remove()
+            document.querySelector('#button1').remove()
+            document.querySelector('#parent').prepend(name)
+            socket.emit('user', {username: userName})
+        }
         //////////////////
         function messageSend() {
             var userName = document.getElementById("input").value;
@@ -54,23 +66,25 @@
         var channels = []
         function channel() {
             let channelName = document.getElementById('channel').value;
+            let inners = []
             channels.forEach(numberC => {
-                console.log("Number c: ", numberC.innerText, "Text: ", channelName, "Ar lygu: ", numberC.innerText == channelName) ;
-                if (numberC.innerText == channelName) {
-                    console.warn("Veikia ifas");
-                    return null;
-                } 
+                inners.push(numberC.innerHTML)
             });
-            const channel = document.createElement('button')
-            channel.className = 'channelDiv'
-            channel.innerHTML = channelName
-            channel.onclick = function() { room(channelName) }
-            channels.push(channel)
-            document.getElementById("channels").innerHTML = "";
-            channels.forEach( div => {
-                document.querySelector('#channels').append(div) 
-            })
-        }
+            if (inners.includes(channelName)) {
+                return;
+            }
+            else {
+                const channel = document.createElement('button')
+                channel.className = 'channelDiv'
+                channel.innerHTML = channelName
+                channel.onclick = function() { room(channelName) }
+                channels.push(channel)
+                document.getElementById("channels").innerHTML = "";
+                channels.forEach( div => {
+                    document.querySelector('#channels').append(div) 
+                })
+            }
+            };
         /////////////////////
         function room(channelName) {
             let userName = document.getElementById('input').value

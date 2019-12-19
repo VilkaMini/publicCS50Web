@@ -16,6 +16,10 @@ def index():
 def handle_con(con):
     print(con['data'])
 
+@socketio.on('user')
+def userReg(uname):
+    print(uname["username"])
+
 @socketio.on('message')
 def handle_message(msg):
     message = msg["time"] + " " + msg["username"] + ": " + msg["message"]

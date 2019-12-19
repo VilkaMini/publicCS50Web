@@ -1,3 +1,5 @@
+
+
 body {
     background: rgb(167, 209, 240);  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #A6FFCB, #12D8FA, #1FA2FF);
@@ -30,6 +32,27 @@ body {
     margin-right: auto;
     margin-left: auto;
     width: 250px;
+}
+
+#button3 {
+    width: 100%;
+    height: 20px;
+    border-radius: 5px;
+    border-color: black;
+    outline: none;
+    margin-left: 1.9%;
+}
+
+#button3:hover{
+    background-color: black;
+    color: white;
+    transition: 0.5s;
+}
+
+#button3:active{
+    background-color: red;
+    color: black;
+    transition: 0.05s;
 }
 
 #button1 {
@@ -107,6 +130,13 @@ body {
     background-color: red;
     color: black;
     transition: 0.05s;
+}
+
+.usernameDiv {
+    font-size: 30px;
+    color: black;
+    text-align: center;
+
 }
 
 #channels {
