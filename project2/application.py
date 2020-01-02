@@ -55,7 +55,7 @@ def handle_message(msg):
     holder[currentChannel[0]].append(message)
     if len(holder[currentChannel[0]]) > 100:
         holder[currentChannel[0]].pop(0)
-    emit('chat message', message)
+    emit('chatMessage', message)
 
 @socketio.on('join')
 def on_join(data):
