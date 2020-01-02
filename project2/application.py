@@ -7,6 +7,8 @@ app = Flask(__name__)
 app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
 socketio = SocketIO(app)
 
+channelList = []
+username = []
 
 @app.route("/")
 def index():
@@ -18,7 +20,13 @@ def handle_con(con):
 
 @socketio.on('user')
 def userReg(uname):
-    print(uname["username"])
+    username.append(uname["username"])
+    print(username)
+
+@socketio.on('channelToServer')
+def channelAppend(ch):
+    channelList.append(ch['channel'])
+    print(channelList)
 
 @socketio.on('message')
 def handle_message(msg):
