@@ -97,5 +97,51 @@
             let userName = document.getElementById('input').value
             socket.emit('join', {username: userName, room: channelName})
         }
+        /////////////////////
+        socket.on('channelChange', function(passed) {
+            msgA = passed
+            var divA = []
+            msgA.forEach(message => {
+                const messageS = document.createElement('div')
+                messageS.className = 'messages'
+                messageS.innerHTML = message
+                divA.push(messageS)});
+            document.getElementById("messageBoard").innerHTML = "";
+            divA.forEach( div => {
+                document.querySelector('#messageBoard').append(div) 
+            })
+        })
+        //////////////////////
+        socket.on('load', function(recieved){
+            //////////
+            let rUsername = recieved['username'][0]
+            let rChannels = recieved['channelList']
+            let rCurChannel = recieved['currentChannel'][0]
+            let rHolder = recieved['holder']
+            //////////
+            if (rUsername) {
+                const name = document.createElement('div')
+                name.className = 'usernameDiv'
+                name.innerHTML = rUsername
+                document.querySelector('#input').style.visibility = 'hidden'
+                document.querySelector('#button1').remove()
+                document.querySelector('#parent').prepend(name)
+            }
+
+            //////////
+            rChannels.forEach(rChannel => {
+                const channel = document.createElement('button')
+                channel.className = 'channelDiv'
+                channel.innerHTML = rChannel
+                channel.onclick = function() { room(rChannel) }
+                channels.push(channel)
+                document.getElementById("channels").innerHTML = "";
+                channels.forEach( div => {
+                    document.querySelector('#channels').append(div) 
+                })
+            });
+            //////////
+
+        })
     </script>
 </html>
