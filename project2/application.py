@@ -40,14 +40,5 @@ def on_leave(data):
     leave_room(room)
     emit(username + ' has left the room.', room=room)
 
-
-
-
-
-
-
-
-
-
 if __name__ == "__main__":
     socketio.run(app)
