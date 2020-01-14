@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Test</title>
+        {% load static %}
+        <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}"> 
+    </head>
+    <body>
+        <h1>Toppings</h1>
+        <ul>
+            {% for topping in toppings %}
+                <li>
+                    {{ topping }}
+                </li>
+            {% endfor %}
+        </ul>
+    </body>
+</html>
