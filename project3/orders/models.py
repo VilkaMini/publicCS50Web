@@ -44,7 +44,6 @@ class Dinner(models.Model):
         return f"{self.plate}"
 
 ############################################################
-
 class Pizza(models.Model):
     # user ID
     kind = models.ForeignKey(Kind, on_delete=models.CASCADE)
