@@ -6,10 +6,21 @@
         <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}"> 
     </head>
     <body>
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li  {% if message.tags %} class=" {{ message.tags }} " {% endif %}> {{ message }} </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        <a href="{% url 'login' %}">Login</a>
         <form action="{% url 'register' %}" method="post">
             {% csrf_token %}
-            <input name="username" type="text"/>
-            <input name="password" type="password"/>
+            <input name="username" type="text" placeholder="Username" required/>
+            <input name="password" type="password" placeholder="Password" required/>
+            <input name="email" type="text" placeholder="Email" required/>
+            <input name="firstName" type="text" placeholder="First Name" required/>
+            <input name="lastName" type="text" placeholder="Last Name" required/>
             <input type="submit" value="Login"/>
         </form>
     </body>
