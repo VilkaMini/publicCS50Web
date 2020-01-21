@@ -6,7 +6,6 @@
         <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}"> 
     </head>
     <body>
-        
         <a href="{% url 'register' %}">Register</a>
         <form action="{% url 'login' %}" method="post">
             {% csrf_token %}

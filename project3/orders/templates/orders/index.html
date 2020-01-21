@@ -39,7 +39,7 @@
                 </li>
             {% endfor %}
         </ul>
-        <h1>Dinner plates</h1>
+        <h1>Dinner platters</h1>
         <ul>
             {% for plate in Dinner %}
                 <li>
@@ -47,5 +47,79 @@
                 </li>
             {% endfor %}
         </ul>
+        <h2>Orders:</h2>
+        <h2>Pizza</h2>
+        <select id="pizzaKind">
+            {% for kinds in kind %}
+                <option value="{{ kinds }}">{{ kinds }}</option>
+            {% endfor %}
+        </select>
+        <select id="pizzaSize">
+            {% for sizes in size %}
+                <option value="{{ sizes }}">{{ sizes }}</option>
+            {% endfor %}
+        </select>
+        <select id="pizzaName">
+            <option value="Cheese">Cheese</option>
+            <option value="1 topping">1 topping</option>
+            <option value="2 toppings">2 toppings</option>
+            <option value="3 toppings">3 toppings</option>
+            <option value="Special">Special</option>
+        </select>
+        <button onclick="pizzaOrder()">Add to cart</button>
+        <h2>Subs</h2>
+        <select id="subName">
+            {% for subs in Sub %}
+                <option value="{{ subs }}">{{ subs }}</option>
+            {% endfor %}
+        </select>
+        <select id="subSize">
+            {% for sizes in size %}
+                <option value="{{ sizes }}">{{ sizes }}</option>
+            {% endfor %}
+        </select>
+        <button onclick="subOrder()">Add to cart</button>
+        <h2>Pasta</h2>
+        <select>
+            {% for pastas in Pasta %}
+                <option value="{{ pastas }}">{{ pastas }}</option>
+            {% endfor %}
+        </select>
+        <button onclick="">Add to cart</button>
+        <h2>Salads</h2>
+        <select>
+            {% for salad in Salads %}
+                <option value="{{ salad }}">{{ salad }}</option>
+            {% endfor %}
+        </select>
+        <button onclick="">Add to cart</button>
+        <h2>Dinner Platters</h2>
+        <select>
+            {% for plate in Dinner %}
+                <option value="{{ plate }}">{{ plate }}</option>
+            {% endfor %}
+        </select>
+        <select>
+            {% for sizes in size %}
+                <option value="{{ sizes }}">{{ sizes }}</option>
+            {% endfor %}
+        </select>
+        <button onclick="">Add to cart</button>
     </body>
+    <script>
+    
+        function pizzaOrder(){
+            let kind = document.getElementById("pizzaKind").value
+            let size = document.getElementById("pizzaSize").value
+            let name = document.getElementById("pizzaName").value
+            console.log(kind, size, name)
+        }
+
+        function subOrder(){
+            let name = document.getElementById("subName").value
+            let size = document.getElementById("subSize").value
+            console.log(name, size)
+        }
+
+    </script>
 </html>

@@ -4,13 +4,15 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
 
-from .models import Toppings, Sub, Pasta, Salads, Dinner
+from .models import Toppings, Sub, Pasta, Salads, Dinner, Size, Kind
 
 # Create your views here.
 def index(request):
     if not request.user.is_authenticated:
         return render(request, "orders/login.html")
     context = {
+        "size": Size.objects.all(),
+        "kind": Kind.objects.all(),
         "toppings": Toppings.objects.all(),
         "Sub": Sub.objects.all(),
         "Pasta": Pasta.objects.all(),
@@ -55,14 +57,3 @@ def loginUser(request):
 def logoutUser(request):
     logout(request)
     return render(request, "orders/login.html", {"message": "Logged Out"})
-
-
-def menu(request):
-    context = {
-        "toppings": Toppings.objects.all(),
-        "Sub": Sub.objects.all(),
-        "Pasta": Pasta.objects.all(),
-        "Salads": Salads.objects.all(),
-        "Dinner": Dinner.objects.all(),
-    }
-    return render(request, "orders/index.html", context)

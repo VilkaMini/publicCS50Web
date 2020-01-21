@@ -13,6 +13,15 @@ class Size(models.Model):
     def __str__(self):
         return f"{self.size}"
 
+class Pizza(models.Model):
+    kind = models.ForeignKey(Kind, on_delete=models.CASCADE)
+    name = models.TextField(max_length=10, default="Default")
+    size = models.ForeignKey(Size, on_delete=models.CASCADE)
+    price = models.FloatField(default=10)
+
+    def __str__(self):
+        return f"{self.kind},{self.name}, {self.size}"
+
 class Toppings(models.Model):
     topping =  models.CharField(max_length=16)
 
@@ -21,66 +30,32 @@ class Toppings(models.Model):
 
 class Sub(models.Model):
     sub = models.CharField(max_length=25)
+    smallPrice = models.FloatField(default=6.50)
+    largePrice = models.FloatField(default=7.95)
 
     def __str__(self):
         return f"{self.sub}"
 
 class Pasta(models.Model):
     pasta = models.CharField(max_length=24)
+    price = models.FloatField(default=8.75)
 
     def __str__(self):
         return f"{self.pasta}"
 
 class Salads(models.Model):
     salad = models.CharField(max_length=12)
+    price = models.FloatField(default=8.25)
 
     def __str__(self):
         return f"{self.salad}"
 
 class Dinner(models.Model):
     plate = models.CharField(max_length=13)
+    smallPrice = models.FloatField(default=40)
+    largePrice = models.FloatField(default=65)
 
     def __str__(self):
         return f"{self.plate}"
 
 ############################################################
-class Pizza(models.Model):
-    # user ID
-    kind = models.ForeignKey(Kind, on_delete=models.CASCADE)
-    size = models.ForeignKey(Size, on_delete=models.CASCADE)
-    topping1 = models.ForeignKey(Toppings, on_delete=models.CASCADE, blank=True, related_name="Topping1") 
-    topping2 = models.ForeignKey(Toppings, on_delete=models.CASCADE, blank=True, related_name="Topping2")
-    topping3 = models.ForeignKey(Toppings, on_delete=models.CASCADE, blank=True, related_name="Topping3")
-
-    def __str__(self):
-        return f"{self.kind}, {self.size}, {self.topping1}, {self.topping2}, {self.topping3}"
-
-class Subs(models.Model):
-    # user ID
-    sub = models.ForeignKey(Size, on_delete=models.CASCADE, related_name="Sub")
-    size = models.ForeignKey(Size, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return f"{self.sub}, {self.size}"
-
-class Pastas(models.Model):
-    # user ID
-    pasta = models.ForeignKey(Pasta, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return f"{self.pasta}"
-
-class Salad(models.Model):
-    # user ID
-    salad = models.ForeignKey(Salads, on_delete=models.CASCADE, related_name="saladOrder")
-
-    def __str__(self):
-        return f"{self.salad}"
-
-class DinnerPlate(models.Model):
-    # user ID
-    plate = models.ForeignKey(Dinner, on_delete=models.CASCADE)
-    size = models.ForeignKey(Size, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return f"{self.plate}, {self.size}"
