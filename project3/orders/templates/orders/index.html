@@ -47,79 +47,96 @@
                 </li>
             {% endfor %}
         </ul>
-        <h2>Orders:</h2>
+        <h1>Orders:</h1>
         <h2>Pizza</h2>
-        <select id="pizzaKind">
-            {% for kinds in kind %}
-                <option value="{{ kinds }}">{{ kinds }}</option>
-            {% endfor %}
-        </select>
-        <select id="pizzaSize">
-            {% for sizes in size %}
-                <option value="{{ sizes }}">{{ sizes }}</option>
-            {% endfor %}
-        </select>
-        <select id="pizzaName">
-            <option value="Cheese">Cheese</option>
-            <option value="1 topping">1 topping</option>
-            <option value="2 toppings">2 toppings</option>
-            <option value="3 toppings">3 toppings</option>
-            <option value="Special">Special</option>
-        </select>
-        <button onclick="pizzaOrder()">Add to cart</button>
+        <form action="{% url 'pizza' %}" method="post">
+            {% csrf_token %}
+            <select name="pizzaKind">
+                {% for kinds in kind %}
+                    <option value="{{ kinds }}">{{ kinds }}</option>
+                {% endfor %}
+            </select>
+            <select name="pizzaSize">
+                {% for sizes in size %}
+                    <option value="{{ sizes }}">{{ sizes }}</option>
+                {% endfor %}
+            </select>
+            <select id="pizzaSelect"name="pizzaName">
+                <option value="Cheese">Cheese</option>
+                <option value="1 topping">1 topping</option>
+                <option value="2 toppings">2 toppings</option>
+                <option value="3 toppings">3 toppings</option>
+                <option value="Special">Special</option>
+            </select>
+            <input type="submit"/>
+        </form>
         <h2>Subs</h2>
-        <select id="subName">
-            {% for subs in Sub %}
-                <option value="{{ subs }}">{{ subs }}</option>
-            {% endfor %}
-        </select>
-        <select id="subSize">
-            {% for sizes in size %}
-                <option value="{{ sizes }}">{{ sizes }}</option>
-            {% endfor %}
-        </select>
-        <button onclick="subOrder()">Add to cart</button>
+        <form action="{% url 'sub' %}" method="post">
+            {% csrf_token %}
+            <select name="subName">
+                {% for subs in Sub %}
+                    <option value="{{ subs }}">{{ subs }}</option>
+                {% endfor %}
+            </select>
+            <select name="subSize">
+                {% for sizes in size %}
+                    <option value="{{ sizes }}">{{ sizes }}</option>
+                {% endfor %}
+            </select>
+            <input type="submit"/>
+        </form>
         <h2>Pasta</h2>
-        <select>
-            {% for pastas in Pasta %}
-                <option value="{{ pastas }}">{{ pastas }}</option>
-            {% endfor %}
-        </select>
-        <button onclick="">Add to cart</button>
+        <form action="{% url 'pasta' %}" method="post">
+            {% csrf_token %}
+            <select name="pastaName">
+                {% for pastas in Pasta %}
+                    <option value="{{ pastas }}">{{ pastas }}</option>
+                {% endfor %}
+            </select>
+            <input type="submit"/>
+        </form>
         <h2>Salads</h2>
-        <select>
-            {% for salad in Salads %}
-                <option value="{{ salad }}">{{ salad }}</option>
-            {% endfor %}
-        </select>
-        <button onclick="">Add to cart</button>
+        <form action="{% url 'salad' %}" method="post">
+            {% csrf_token %}
+            <select name="saladName">
+                {% for salad in Salads %}
+                    <option value="{{ salad }}">{{ salad }}</option>
+                {% endfor %}
+            </select>
+            <input type="submit"/>
+        </form>
         <h2>Dinner Platters</h2>
-        <select>
-            {% for plate in Dinner %}
-                <option value="{{ plate }}">{{ plate }}</option>
-            {% endfor %}
-        </select>
-        <select>
-            {% for sizes in size %}
-                <option value="{{ sizes }}">{{ sizes }}</option>
-            {% endfor %}
-        </select>
-        <button onclick="">Add to cart</button>
+        <form action="{% url 'dinner' %}" method="post">
+            {% csrf_token %}
+            <select name="dinnerName">
+                {% for plate in Dinner %}
+                    <option value="{{ plate }}">{{ plate }}</option>
+                {% endfor %}
+            </select>
+            <select name="dinnerSize">
+                {% for sizes in size %}
+                    <option value="{{ sizes }}">{{ sizes }}</option>
+                {% endfor %}
+            </select>
+            <input type="submit"/>
+        </form>
     </body>
     <script>
-    
-        function pizzaOrder(){
-            let kind = document.getElementById("pizzaKind").value
-            let size = document.getElementById("pizzaSize").value
-            let name = document.getElementById("pizzaName").value
-            console.log(kind, size, name)
+        
+    document.addEventListener('input', function (event) {
+        if (event.target.id !== 'pizzaSelect'){
+            return
         }
-
-        function subOrder(){
-            let name = document.getElementById("subName").value
-            let size = document.getElementById("subSize").value
-            console.log(name, size)
+        if (event.target.value === '1 topping'){
+            alert("1 topping working")
         }
+        if (event.target.value === '2 toppings'){
+            alert("2 toppings working")
+        }
+        if (event.target.value === '3 toppings'){
+            alert("3 toppings working")
+        }
+    })
 
     </script>
 </html>

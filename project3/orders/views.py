@@ -10,15 +10,7 @@ from .models import Toppings, Sub, Pasta, Salads, Dinner, Size, Kind
 def index(request):
     if not request.user.is_authenticated:
         return render(request, "orders/login.html")
-    context = {
-        "size": Size.objects.all(),
-        "kind": Kind.objects.all(),
-        "toppings": Toppings.objects.all(),
-        "Sub": Sub.objects.all(),
-        "Pasta": Pasta.objects.all(),
-        "Salads": Salads.objects.all(),
-        "Dinner": Dinner.objects.all(),
-    }
+    context = menuHelper()
     return render(request, "orders/index.html", context)
 
 def register(request):
@@ -57,3 +49,51 @@ def loginUser(request):
 def logoutUser(request):
     logout(request)
     return render(request, "orders/login.html", {"message": "Logged Out"})
+
+
+def pizza(request):
+    kind = request.POST["pizzaKind"]
+    size = request.POST["pizzaSize"]
+    name = request.POST["pizzaName"]
+    context = menuHelper()
+    print(kind, size, name)
+    return render(request, "orders/index.html", context)
+
+def sub(request):
+    size = request.POST["subSize"]
+    name = request.POST["subName"]
+    context = menuHelper()
+    print(size, name)
+    return render(request, "orders/index.html", context)
+
+def pasta(request):
+    name = request.POST["pastaName"]
+    context = menuHelper()
+    print(name)
+    return render(request, "orders/index.html", context)
+
+def salad(request):
+    name = request.POST["saladName"]
+    context = menuHelper()
+    print(name)
+    return render(request, "orders/index.html", context)
+
+def dinner(request):
+    size = request.POST["dinnerSize"]
+    name = request.POST["dinnerName"]
+    context = menuHelper()
+    print(size, name)
+    return render(request, "orders/index.html", context)
+
+
+def menuHelper():
+    context = {
+        "size": Size.objects.all(),
+        "kind": Kind.objects.all(),
+        "toppings": Toppings.objects.all(),
+        "Sub": Sub.objects.all(),
+        "Pasta": Pasta.objects.all(),
+        "Salads": Salads.objects.all(),
+        "Dinner": Dinner.objects.all(),
+    }
+    return context
