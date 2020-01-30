@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 class Kind(models.Model):
-    kind = models.CharField(max_length=8)
+    kind = models.CharField(max_length=10)
 
     def __str__(self):
         return f"{self.kind}"
@@ -15,7 +15,7 @@ class Size(models.Model):
 
 class Pizza(models.Model):
     kind = models.ForeignKey(Kind, on_delete=models.CASCADE)
-    name = models.TextField(max_length=10, default="Default")
+    name = models.TextField(max_length=11, default="Default")
     size = models.ForeignKey(Size, on_delete=models.CASCADE)
     price = models.FloatField(default=10)
 

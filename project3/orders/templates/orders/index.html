@@ -68,6 +68,23 @@
                 <option value="3 toppings">3 toppings</option>
                 <option value="Special">Special</option>
             </select>
+            <div id="toppingDiv" name="chosenToppings">
+                <select name="topping1">
+                    {% for top in toppings %}
+                        <option value="{{ top }}">{{ top }}</option>
+                    {% endfor %}
+                </select>
+                <select name="topping2">
+                    {% for top in toppings %}
+                        <option value="{{ top }}">{{ top }}</option>
+                    {% endfor %}
+                </select>
+                <select name="topping3">
+                    {% for top in toppings %}
+                        <option value="{{ top }}">{{ top }}</option>
+                    {% endfor %}
+                </select>
+            </div>
             <input type="submit"/>
         </form>
         <h2>Subs</h2>
@@ -121,22 +138,4 @@
             <input type="submit"/>
         </form>
     </body>
-    <script>
-        
-    document.addEventListener('input', function (event) {
-        if (event.target.id !== 'pizzaSelect'){
-            return
-        }
-        if (event.target.value === '1 topping'){
-            alert("1 topping working")
-        }
-        if (event.target.value === '2 toppings'){
-            alert("2 toppings working")
-        }
-        if (event.target.value === '3 toppings'){
-            alert("3 toppings working")
-        }
-    })
-
-    </script>
 </html>

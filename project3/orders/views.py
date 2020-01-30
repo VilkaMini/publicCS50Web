@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
 
-from .models import Toppings, Sub, Pasta, Salads, Dinner, Size, Kind
+from .models import Toppings, Sub, Pasta, Salads, Dinner, Size, Kind, Pizza
 
 # Create your views here.
 def index(request):
@@ -55,8 +55,13 @@ def pizza(request):
     kind = request.POST["pizzaKind"]
     size = request.POST["pizzaSize"]
     name = request.POST["pizzaName"]
+    topping1 = request.POST["topping1"]
+    topping2 = request.POST["topping2"]
+    topping3 = request.POST["topping3"]
+    price = Pizza.objects.all().filter(name=name, kind__kind=kind, size__size=size)
     context = menuHelper()
-    print(kind, size, name)
+    print(price.values_list("price", flat=True)[0])
+    print(kind, size, name, topping1, topping2, topping3)
     return render(request, "orders/index.html", context)
 
 def sub(request):
