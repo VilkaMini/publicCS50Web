@@ -6,6 +6,14 @@
         <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}"> 
     </head>
     <body>
+        <div id="orders">
+        <div>
+            {% for order in ordered %}
+                {% for things in order %}
+                    {{things}}
+                {% endfor %}
+            {% endfor %}
+        </div>
         <a href="{% url 'logout' %}">Logout</a>
         <h1>Toppings</h1>
         <ul>
