@@ -1,5 +1,24 @@
 body {
     background-color: blanchedalmond;
     display: flex;
+    flex-direction: row;
+}
+
+#menu{
+    width: 45%;
     flex-direction: column;
+
+}
+
+#secondCol{
+    width: 45%;
+    flex-direction: column;
+}
+
+.middle{
+    text-align: center;
+}
+
+.mediumText{
+    font-size: 25px;
 }
