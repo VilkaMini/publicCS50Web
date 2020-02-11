@@ -6,87 +6,89 @@
         <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}"> 
     </head>
     <body>
-        <table id="menu">
-        <tr>
-            <th class="bigText" colspan="3">Menu</th>
-        </tr>
-        <tr>
-            <th class="mediumText" colspan="3">Pizza</th>
-        </tr>
-        <tr>
-            <th colspan="3">Regular or Sicilian</th>
-        </tr>
-            <tr><td class="middle">Cheese</td></tr>
-            <tr><td class="middle">1 Topping</td></tr>
-            <tr><td class="middle">2 Toppings</td></tr>
-            <tr><td class="middle">3 Toppings</td></tr>
-            <tr><td class="middle">Special</td></tr>
-        <tr>
-            <th class="mediumText" colspan="3">Toppings</th>
-        </tr>
-        {% for topping in toppings %}
-        <tr>
-            <td class="middle" colspan="3">
-                {{ topping }}
-            </td>
-        </tr>
-        {% endfor %}
-        <tr>
-            <th class="mediumText" colspan="3">Subs</th>
-        </tr>
-        {% for subs in Sub %}
-        <tr>
-            <td class="middle" colspan="3">
-                {{ subs }}
-            </td>
-        </tr>
-        {% endfor %}
-        <tr>
-            <th class="mediumText" colspan="3">Pasta</th>
-        </tr>
-        {% for pastas in Pasta %}
-        <tr>
-            <td class="middle" colspan="3">
-                {{ pastas }}
-            </td>
-        </tr>
-        {% endfor %}       
-        <tr>
-            <th class="mediumText" colspan="3">Salad</th>
-        </tr>
-        {% for salad in Salads %}
-        <tr>
-            <td class="middle" colspan="3">
-                {{ salad }}
-            </td>
-        </tr>
-        {% endfor %}
-        <tr>
-            <th class="mediumText" colspan="3">Dinner Platters</th>
-        </tr>
-        {% for plate in Dinner %}
-        <tr>
-            <td class="middle" colspan="3">
-                {{ plate }}
-            </td>
-        </tr>
-        {% endfor %}
-        </table>
+        <div id="scrollMenu">
+            <table id="menu">
+            <tr>
+                <th class="largeText" colspan="3">Menu</th>
+            </tr>
+            <tr>
+                <th class="mediumText" colspan="3">Pizza</th>
+            </tr>
+            <tr>
+                <th colspan="3">Regular or Sicilian</th>
+            </tr>
+                <tr><td class="middle">Cheese</td></tr>
+                <tr><td class="middle">1 Topping</td></tr>
+                <tr><td class="middle">2 Toppings</td></tr>
+                <tr><td class="middle">3 Toppings</td></tr>
+                <tr><td class="middle">Special</td></tr>
+            <tr>
+                <th class="mediumText" colspan="3">Toppings</th>
+            </tr>
+            {% for topping in toppings %}
+            <tr>
+                <td class="middle" colspan="3">
+                    {{ topping }}
+                </td>
+            </tr>
+            {% endfor %}
+            <tr>
+                <th class="mediumText" colspan="3">Subs</th>
+            </tr>
+            {% for subs in Sub %}
+            <tr>
+                <td class="middle" colspan="3">
+                    {{ subs }}
+                </td>
+            </tr>
+            {% endfor %}
+            <tr>
+                <th class="mediumText" colspan="3">Pasta</th>
+            </tr>
+            {% for pastas in Pasta %}
+            <tr>
+                <td class="middle" colspan="3">
+                    {{ pastas }}
+                </td>
+            </tr>
+            {% endfor %}       
+            <tr>
+                <th class="mediumText" colspan="3">Salad</th>
+            </tr>
+            {% for salad in Salads %}
+            <tr>
+                <td class="middle" colspan="3">
+                    {{ salad }}
+                </td>
+            </tr>
+            {% endfor %}
+            <tr>
+                <th class="mediumText" colspan="3">Dinner Platters</th>
+            </tr>
+            {% for plate in Dinner %}
+            <tr>
+                <td class="middle" colspan="3">
+                    {{ plate }}
+                </td>
+            </tr>
+            {% endfor %}
+            </table>
+        </div>
         <div id="secondCol">
             <h2>Pizza</h2>
             <form action="{% url 'pizza' %}" method="post">
                 {% csrf_token %}
-                <select name="pizzaKind">
+                <select class="settings" name="pizzaKind">
                     {% for kinds in kind %}
                         <option value="{{ kinds }}">{{ kinds }}</option>
                     {% endfor %}
                 </select>
-                <select name="pizzaSize">
+                <select class="settings" name="pizzaSize">
                     {% for sizes in size %}
                         <option value="{{ sizes }}">{{ sizes }}</option>
                     {% endfor %}
                 </select>
-                <select id="pizzaSelect"name="pizzaName">
+                <select class="settings" id="pizzaSelect"name="pizzaName">
                     <option value="Cheese">Cheese</option>
                     <option value="1 topping">1 topping</option>
                     <option value="2 toppings">2 toppings</option>
@@ -94,89 +96,108 @@
                     <option value="Special">Special</option>
                 </select>
                 <div id="toppingDiv" name="chosenToppings">
-                    <select name="topping1">
+                    <select class="settings" name="topping1">
                         {% for top in toppings %}
                             <option value="{{ top }}">{{ top }}</option>
                         {% endfor %}
                     </select>
-                    <select name="topping2">
+                    <select class="settings" name="topping2">
                         {% for top in toppings %}
                             <option value="{{ top }}">{{ top }}</option>
                         {% endfor %}
                     </select>
-                    <select name="topping3">
+                    <select class="settings" name="topping3">
                         {% for top in toppings %}
                             <option value="{{ top }}">{{ top }}</option>
                         {% endfor %}
                     </select>
                 </div>
-                <input type="submit"/>
+                <input class="settings" type="submit"/>
             </form>
             <h2>Subs</h2>
             <form action="{% url 'sub' %}" method="post">
                 {% csrf_token %}
-                <select name="subName">
+                <select class="settings" name="subName">
                     {% for subs in Sub %}
                         <option value="{{ subs }}">{{ subs }}</option>
                     {% endfor %}
                 </select>
-                <select name="subSize">
+                <select class="settings" name="subSize">
                     {% for sizes in size %}
                         <option value="{{ sizes }}">{{ sizes }}</option>
                     {% endfor %}
                 </select>
-                <input type="submit"/>
+                <input class="settings" type="submit"/>
             </form>
             <h2>Pasta</h2>
             <form action="{% url 'pasta' %}" method="post">
                 {% csrf_token %}
-                <select name="pastaName">
+                <select class="settings" name="pastaName">
                     {% for pastas in Pasta %}
                         <option value="{{ pastas }}">{{ pastas }}</option>
                     {% endfor %}
                 </select>
-                <input type="submit"/>
+                <input class="settings" type="submit"/>
             </form>
             <h2>Salads</h2>
             <form action="{% url 'salad' %}" method="post">
                 {% csrf_token %}
-                <select name="saladName">
+                <select class="settings" name="saladName">
                     {% for salad in Salads %}
                         <option value="{{ salad }}">{{ salad }}</option>
                     {% endfor %}
                 </select>
-                <input type="submit"/>
+                <input class="settings" type="submit"/>
             </form>
             <h2>Dinner Platters</h2>
             <form action="{% url 'dinner' %}" method="post">
                 {% csrf_token %}
-                <select name="dinnerName">
+                <select class="settings" name="dinnerName">
                     {% for plate in Dinner %}
                         <option value="{{ plate }}">{{ plate }}</option>
                     {% endfor %}
                 </select>
-                <select name="dinnerSize">
+                <select class="settings" name="dinnerSize">
                     {% for sizes in size %}
                         <option value="{{ sizes }}">{{ sizes }}</option>
                     {% endfor %}
                 </select>
-                <input type="submit"/>
+                <input class="settings" type="submit"/>
             </form>
             <div id="orders">
-                Your Orders:
-                {% for order in ordered %}
-                    <div class="order">
-                        {% for things in order %}
-                            {% if things == 0 %}
-                            {% else %}
-                                {{things}}
-                            {% endif %}
-                        {% endfor %}
-                    </div>
-                {% endfor %}
-                Total: {{ total.0 }}
+                <p class="mediumText">Your Orders:</p>
+                <div id="orderContainer">
+                    {% for order in ordered %}
+                        <div class="order">
+                            {% for things in order %}
+                                {% if things == '0' %}
+                                {% else %}
+                                    {{things}}
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    {% endfor %}
+                </div>
+                <br>
+                <p class="mediumText">Total: {{ total.0 }}</p>
             </div>
-            <a href="{% url 'logout' %}">Logout</a>
+            <div id="spaces">
+            <a id="cartBox" href="{% url 'cart' %}">Place the order</a>
+            </div>
+            <a class="loginout" href="{% url 'logout' %}">Logout</a>
         </div>
     </body>
+    <script>
+        window.addEventListener('load', checkCart)
+
+        function checkCart() {
+            var cart = "{{ ordered }}"
+            if (cart.length > 2){
+                document.getElementById("cartBox").style.visibility = "visible"
+            }
+            else {
+                document.getElementById("cartBox").style.visibility= "hidden"
+            }
+        }
+    </script>
 </html>

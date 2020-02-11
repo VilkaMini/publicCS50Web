@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
 
-from .models import Toppings, Sub, Pasta, Salads, Dinner, Size, Kind, Pizza
+from .models import Toppings, Sub, Pasta, Salads, Dinner, Size, Kind, Pizza, OrderCart
 
 # Create your views here.
 def index(request):
@@ -55,6 +55,16 @@ def logoutUser(request):
     logout(request)
     return render(request, "orders/login.html", {"message": "Logged Out"})
 
+def cart(request):
+    context = menuHelper()
+    saved_list = request.session.get("saved", [])
+    name = request.user.get_full_name()
+    cart = OrderCart(name=name)
+    cart.orders = saved_list
+    cart.save()
+    request.session["saved"] = []
+    request.session["total"] = []
+    return render(request, "orders/index.html", context)
 
 def pizza(request):
     kind = request.POST["pizzaKind"]
@@ -62,25 +72,25 @@ def pizza(request):
     name = request.POST["pizzaName"]
     if name == "1 topping":
         topping1 = request.POST["topping1"]
-        topping2 = 0
-        topping3 = 0
+        topping2 = '0'
+        topping3 = '0'
     elif name == "2 toppings":
         topping1 = request.POST["topping1"]
         topping2 = request.POST["topping2"]
-        topping3 = 0
+        topping3 = '0'
     elif name == "3 toppings":
         topping1 = request.POST["topping1"]
         topping2 = request.POST["topping2"]
         topping3 = request.POST["topping3"]
     else:
-        topping1 = 0
-        topping2 = 0
-        topping3 = 0
+        topping1 = '0'
+        topping2 = '0'
+        topping3 = '0'
     price = Pizza.objects.all().filter(name=name, kind__kind=kind, size__size=size)
     price = price.values_list("price", flat=True)[0]
     context = menuHelper()
     saved_list = request.session.get("saved", [])
-    saved_list.append([kind, size, name, topping1, topping2, topping3, price])
+    saved_list.append([kind, size, name, topping1, topping2, topping3, str(price)])
     request.session["saved"] = saved_list
     totals = request.session.get("total", [])
     if len(totals) == 0:
@@ -102,7 +112,7 @@ def sub(request):
         price = price.values_list("largePrice", flat=True)[0]
     context = menuHelper()
     saved_list = request.session.get("saved", [])
-    saved_list.append([size, name, price])
+    saved_list.append([size, name, str(price)])
     request.session["saved"] = saved_list
     totals = request.session.get("total", [])
     if len(totals) == 0:
@@ -120,7 +130,7 @@ def pasta(request):
     price = price.values_list("price", flat=True)[0]
     context = menuHelper()
     saved_list = request.session.get("saved", [])
-    saved_list.append([name, price])
+    saved_list.append([name, str(price)])
     request.session["saved"] = saved_list
     totals = request.session.get("total", [])
     if len(totals) == 0:
@@ -138,7 +148,7 @@ def salad(request):
     price = price.values_list("price", flat=True)[0]
     context = menuHelper()
     saved_list = request.session.get("saved", [])
-    saved_list.append([name, price])
+    saved_list.append([name, str(price)])
     request.session["saved"] = saved_list
     totals = request.session.get("total", [])
     if len(totals) == 0:
@@ -160,7 +170,7 @@ def dinner(request):
         price = price.values_list("largePrice", flat=True)[0]
     context = menuHelper()
     saved_list = request.session.get("saved", [])
-    saved_list.append([size, name, price])
+    saved_list.append([size, name, str(price)])
     request.session["saved"] = saved_list
     totals = request.session.get("total", [])
     if len(totals) == 0:

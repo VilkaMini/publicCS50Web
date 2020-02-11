@@ -58,4 +58,11 @@ class Dinner(models.Model):
     def __str__(self):
         return f"{self.plate}"
 
+class OrderCart(models.Model):
+    name = models.CharField(max_length=100)
+    orders = models.CharField(max_length=1000, blank=True)
+
+    def __str__(self):
+        return f"{self.name}, {self.orders}"
+
 ############################################################

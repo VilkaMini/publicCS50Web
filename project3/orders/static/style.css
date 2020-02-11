@@ -2,17 +2,21 @@ body {
     background-color: blanchedalmond;
     display: flex;
     flex-direction: row;
+    margin: 0;  
 }
 
 #menu{
-    width: 45%;
-    flex-direction: column;
-
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #CD9BF2;
 }
 
 #secondCol{
-    width: 45%;
+    width: 50%;
     flex-direction: column;
+    border: 10px solid #30BF7B;
+    text-align: center;
+    background-color:  #F53771;
 }
 
 .middle{
@@ -21,4 +25,64 @@ body {
 
 .mediumText{
     font-size: 25px;
+    margin: 0;
+    padding: none;
+}
+
+.largeText{
+    font-size: 35px;
+}
+
+#menu td, #menu th {
+    border: 2px solid #8E0FED;
+    padding: 8px;
+    color: black;
+    font-style: oblique;
+
+}
+
+#cartBox {
+    text-decoration: none;
+    color: blue;
+    font-size: 20px;
+    border: 5px solid #56b085;
+    border-radius: 20px;
+    padding: 5px 5px 5px 5px;
+    background-color: #E8EFD3;
+}
+
+#orders{
+    padding-top: 34px;
+}
+
+.loginout{
+    border: 5px solid #56b085;
+    border-radius: 20px;
+    text-decoration: none;  
+    color: black;
+    font-size: 17px;
+    padding: 5px 5px 5px 5px;
+    background-color: #E8EFD3;
+}
+
+#scrollMenu{
+    width: 50%;
+    overflow: scroll;
+    height: 98.3vh;
+    border: 10px solid #30BF7B;
+}
+
+.settings{
+    border: 5px solid #56b085;
+    border-radius: 20px;
+    color: black;
+    font-size: 17px;
+    padding: 5px 5px 5px 5px;
+    background-color: #E8EFD3;
+    margin-top: 5px;
+}
+
+#spaces{
+    padding-top: 30px;
+    padding-bottom: 30px;
 }
