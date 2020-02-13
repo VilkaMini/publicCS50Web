@@ -6,15 +6,17 @@
         <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}"> 
     </head>
     <body>
-        <form action="{% url 'register' %}" method="post">
-            {% csrf_token %}
-            <input name="username" type="text" placeholder="Username" required/>
-            <input name="password" type="password" placeholder="Password" required/>
-            <input name="email" type="text" placeholder="Email" required/>
-            <input name="firstName" type="text" placeholder="First Name" required/>
-            <input name="lastName" type="text" placeholder="Last Name" required/>
-            <input type="submit" value="Login"/>
-        </form>
-        <a class="loginout" href="{% url 'login' %}">Login</a>
+        <Div id="parent">
+            <form class="logreG" action="{% url 'register' %}" method="post">
+                {% csrf_token %}
+                <input class="settings" name="username" type="text" placeholder="Username" autocomplete="off" required/>
+                <input class="settings" name="password" type="password" placeholder="Password" autocomplete="off" required/>
+                <input class="settings" name="email" type="text" placeholder="Email" autocomplete="off" required/>
+                <input class="settings" name="firstName" type="text" placeholder="First Name" autocomplete="off" required/>
+                <input class="settings" name="lastName" type="text" placeholder="Last Name" autocomplete="off" required/>
+                <input class="settings" type="submit" value="Register"/>
+                <a class="loginout" href="{% url 'login' %}">Login</a>
+            </form>
+        </Div>
     </body>
 </html>

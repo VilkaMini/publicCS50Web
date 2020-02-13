@@ -6,12 +6,14 @@
         <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}"> 
     </head>
     <body>
-        <form action="{% url 'login' %}" method="post">
-            {% csrf_token %}
-            <input name="username" type="text" placeholder="Username" required/>
-            <input name="password" type="password" placeholder="Password" required/>
-            <input type="submit" value="Login"/>
-        </form>
-        <a class="loginout" href="{% url 'register' %}">Register</a>
+        <Div id="parent">
+            <form class="logreg" action="{% url 'login' %}" method="post">
+                {% csrf_token %}
+                <input class="settings" name="username" type="text" placeholder="Username" autocomplete="off" required/>
+                <input class="settings" name="password" type="password" placeholder="Password" autocomplete="off" required/>
+                <input class="settings" type="submit" value="Login"/>
+                <a class="loginout" href="{% url 'register' %}">Register</a>
+            </form>
+        </Div>
     </body>
 </html>

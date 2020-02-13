@@ -56,13 +56,15 @@ body {
 }
 
 .loginout{
+    outline: none;
     border: 5px solid #56b085;
     border-radius: 20px;
     text-decoration: none;  
     color: black;
     font-size: 17px;
-    padding: 5px 5px 5px 5px;
+    padding: 5px 5px 5px 5px;       
     background-color: #E8EFD3;
+    margin-top: 5px;
 }
 
 #scrollMenu{
@@ -73,6 +75,7 @@ body {
 }
 
 .settings{
+    outline: none;
     border: 5px solid #56b085;
     border-radius: 20px;
     color: black;
@@ -85,4 +88,26 @@ body {
 #spaces{
     padding-top: 30px;
     padding-bottom: 30px;
+}
+
+.logreg{
+    width: 200px;
+    height: 150px;
+}
+
+#parent{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border: 10px solid #30BF7B;
+    background-color:  #F53771;
+    height: 98.5vh;
+    width: 100%;
+    text-align: center;
+    align-items: center;
+}
+
+.logreG{
+    width: 220px;
+    height: 280px;
 }
